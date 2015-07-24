@@ -1,7 +1,7 @@
-# Dynamically load differnt versions of a single page app
+# Dynamically load different versions of a single page app
 
 Goal: be able to ship multiple versions of a SPA to something like S3/CF and
-have the application boostrapping figure out which version to load (and fallback
+have the application bootstrapping figure out which version to load (and fallback
 to a default version if no version set).
 
 ## Layout
@@ -11,7 +11,7 @@ index.html
 require.js
 app/
   main.js  # This is the unminified, development version of the main app and
-           # contains the app's entrypoint.
+           # contains the app's entry point.
   thing.js # This gets bundled up by the minifier.
 v/ # this is where versioned build output goes
   1/
@@ -50,7 +50,7 @@ make start
 ```
 
 Make a change to one of the files e.g. replace the surfing quote with one of your
-own then rebuild the project, spcifying a new version number.
+own then rebuild the project, specifying a new version number.
 ```
 make build APP_VERSION=2
 
