@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html><head>
+<script>
+  
+// Check first if the 'appversion' cookie is set, then the query paramter (which overrides the cookie
+// if they are both set), then fall back to the dev version `app/main` if no explicit version is set.
+  var version = '';
+  var app = 'app/main';
+
+  version = document.cookie.replace(/(?:(?:^|.*;\s*)appversion\s*\=\s*([^;]*).*$)|^.*$/,"$1");
+  location.search.substr(1).split("&").forEach(function (pair) {
+    if (pair === "") return;
+    var parts = pair.split("=");
+    if (parts[0] === "appversion") {
+      version = parts[1];
+    }
+  });
+
+  var script = document.createElement('script');
+  script.src = 'require.js';
+  if (version !== '') {
+    app = 'v/' + version + '/main.min';
+  }
+  script.async = false;
+  script.setAttribute('data-main', app);
+  document.head.appendChild(script);
+</script>
+<!-- <script data-main="app/main" src="require.js"></script> -->
+</head>
+<body>
+        <h1>Be Inspired ...</h1>
+        <h3 id="inspiration"></h3>
+</body>
+</html>
+
